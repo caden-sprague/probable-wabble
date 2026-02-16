@@ -3,8 +3,12 @@
 import React from "react";
 import { View, Text, TextInput, Alert, Pressable } from "react-native";
 import { styles } from "@/lib/style";
+import { router } from "expo-router";
+import { useAppStore } from "../../lib/store";
 
 export default function NewRecipeScreen() {
+
+    const addRecipe = useAppStore((s) => s.addRecipe);
 
     const [name, setName] = React.useState("");
     const [netWeight, setNetWeight] = React.useState("");
@@ -22,10 +26,20 @@ export default function NewRecipeScreen() {
         { label: "Fat", value: fat },
     ];
 
-    function onSave() {
+    async function onSave() {
         if(!validateFields()) return;
 
-        Alert.alert("Save pressed", `Name: ${name}`);
+        await addRecipe({
+            name,
+            net_weight_g: Number(netWeight),
+            total_calories: Number(cal),
+            total_protein_g: Number(protein),
+            total_carbs_g: Number(carbs),
+            total_fat_g: Number(fat),
+        });
+
+        router.back();
+        // Alert.alert("Save pressed", `Name: ${name}`);
     }
 
     const validateFields = () => {
