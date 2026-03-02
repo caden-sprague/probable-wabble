@@ -16,4 +16,13 @@ export const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     color: colors.text,
   },
+  card: {
+    backgroundColor: colors.card,
+    borderRadius: 14,
+    padding: 16,
+  },
+  label: {
+    color: colors.muted,
+    fontSize: 13,
+  },
 });
