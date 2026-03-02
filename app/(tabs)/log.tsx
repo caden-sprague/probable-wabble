@@ -27,7 +27,7 @@ export default function LogScreen() {
     );
 
     return (
-        <ScrollView contentContainerStyle={{ backgroundColor: colors.background, padding: 16, gap: 12, flexGrow: 1 }}>
+        <ScrollView style={{ backgroundColor: colors.background }} contentContainerStyle={{ padding: 16, gap: 12, flexGrow: 1 }}>
             <View style={{ backgroundColor: colors.card, borderRadius: 14, padding: 16, gap: 12 }}>
                 <Text style={[styles.text, { fontWeight: "700", fontSize: 16 }]}>Today's Totals</Text>
                 <View style={{ flexDirection: "row", justifyContent: "space-between" }}>

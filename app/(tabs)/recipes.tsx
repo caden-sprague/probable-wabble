@@ -19,7 +19,7 @@ export default function RecipesScreen() {
     );
 
     return (
-        <ScrollView contentContainerStyle={{ backgroundColor: colors.background, padding: 16, gap: 12, flexGrow: 1 }}>
+        <ScrollView style={{ backgroundColor: colors.background }} contentContainerStyle={{ padding: 16, gap: 12, flexGrow: 1 }}>
             <Link href="/recipes/new" asChild>
                 <Pressable style={{ padding: 14, borderRadius: 12, backgroundColor: colors.accent }}>
                     <Text style={{ color: colors.background, textAlign: "center", fontWeight: "700", fontSize: 15 }}>
