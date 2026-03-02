@@ -67,5 +67,39 @@ export async function createRecipe(input: RecipeInput) {
     );
 
     // lastInsertRowId is returned by expo-sqlite for inserts
-    return Number((result as any).lastInsertRodId ?? 0);
+    return Number((result as any).lastInsertRowId ?? 0);
+}
+
+// ----- Food log types -----
+export type FoodLogRow = {
+    id: number;
+    recipe_id: number;
+    eaten_at: string;
+    amount_g: number;
+    calories: number;
+    protein_g: number;
+    carbs_g: number;
+    fat_g: number;
+    notes: string | null;
+};
+
+export type FoodLogInput = Omit<FoodLogRow, "id" | "notes">;
+
+// ----- Food log functions -----
+export async function addFoodLog(input: FoodLogInput): Promise<number> {
+    const db = await getDb();
+    const result = await db.runAsync(
+        `INSERT INTO food_log (recipe_id, item_type, eaten_at, amount_g, calories, protein_g, carbs_g, fat_g)
+         VALUES (?, 'recipe', ?, ?, ?, ?, ?, ?);`,
+        [input.recipe_id, input.eaten_at, input.amount_g, input.calories, input.protein_g, input.carbs_g, input.fat_g]
+    );
+    return Number((result as any).lastInsertRowId ?? 0);
+}
+
+export async function listFoodLog(date: string): Promise<FoodLogRow[]> {
+    const db = await getDb();
+    return db.getAllAsync<FoodLogRow>(
+        `SELECT * FROM food_log WHERE eaten_at LIKE ? ORDER BY eaten_at DESC;`,
+        [`${date}%`]
+    );
 }

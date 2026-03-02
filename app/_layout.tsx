@@ -20,6 +20,20 @@ export default function RootLayout() {
                 headerTintColor: colors.text,
                 contentStyle: {backgroundColor: colors.background}
             }}/>
+            <Stack.Screen name="log/index" options={{
+                headerShown: true,
+                title: "Today's Log",
+                headerStyle: {backgroundColor: colors.background},
+                headerTintColor: colors.text,
+                contentStyle: {backgroundColor: colors.background}
+            }}/>
+            <Stack.Screen name="log/new" options={{
+                headerShown: true,
+                title: "Log Serving",
+                headerStyle: {backgroundColor: colors.background},
+                headerTintColor: colors.text,
+                contentStyle: {backgroundColor: colors.background}
+            }}/>
         </Stack>
     );
 }

@@ -28,6 +28,12 @@ export default function RecipesScreen() {
                 </Pressable>
             </Link>
 
+            <Link href={"/log"} asChild>
+                <Pressable style={{padding: 12, borderWidth: 1, borderRadius: 12}}>
+                    <Text style={[styles.text, {textAlign: "center"}]}>Today&#39;s Log</Text>
+                </Pressable>
+            </Link>
+
             {recipes.length === 0 ? (
                 <Text style={{opacity: 0.6}}>No recipes yet.</Text>
             ) : (
