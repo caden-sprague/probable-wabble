@@ -1,7 +1,7 @@
 // create a new recipe
 
 import React from "react";
-import {View, Text, TextInput, Alert, Pressable} from "react-native";
+import {View, Text, TextInput, Alert, Pressable, TouchableOpacity} from "react-native";
 import {styles} from "@/lib/style";
 import {useAppStore} from "@/lib/store";
 import {router} from "expo-router";

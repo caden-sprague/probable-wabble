@@ -13,6 +13,13 @@ export default function RootLayout() {
                 headerTintColor: colors.text,
                 contentStyle: {backgroundColor: colors.background}
             }}/>
+            <Stack.Screen name="recipes/[id]" options={{
+                headerShown: true,
+                title: "Recipe Details",
+                headerStyle: {backgroundColor: colors.background},
+                headerTintColor: colors.text,
+                contentStyle: {backgroundColor: colors.background}
+            }}/>
         </Stack>
     );
 }
