@@ -21,7 +21,7 @@ export default function RecipeDetailsScreen() {
         <ScrollView contentContainerStyle={{ backgroundColor: colors.background, padding: 16, gap: 16, flexGrow: 1 }}>
             <View style={{ backgroundColor: colors.card, borderRadius: 14, padding: 16, gap: 12 }}>
                 <Text style={[styles.text, { fontSize: 22, fontWeight: "700" }]}>{recipe.name}</Text>
-                <Text style={{ color: colors.muted, fontSize: 14 }}>Net weight: {recipe.net_weight_g.toFixed(0)} oz</Text>
+                <Text style={{ color: colors.muted, fontSize: 14 }}>Net weight: {recipe.net_weight_g} oz</Text>
                 <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 4 }}>
                     <MacroItem label="Calories" value={recipe.total_calories.toFixed(0)} unit="kcal" color={colors.text} />
                     <MacroItem label="Protein" value={recipe.total_protein_g.toFixed(1)} unit="g" color={colors.protein} />

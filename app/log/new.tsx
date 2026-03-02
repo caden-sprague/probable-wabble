@@ -51,7 +51,7 @@ export default function LogServingScreen() {
         >
             <View style={{ backgroundColor: colors.card, borderRadius: 14, padding: 16, gap: 4 }}>
                 <Text style={[styles.text, { fontSize: 18, fontWeight: "700" }]}>{recipe.name}</Text>
-                <Text style={{ color: colors.muted, fontSize: 13 }}>Net weight: {recipe.net_weight_g.toFixed(0)} oz</Text>
+                <Text style={{ color: colors.muted, fontSize: 13 }}>Net weight: {recipe.net_weight_g} oz</Text>
             </View>
 
             <View style={{ gap: 6 }}>
