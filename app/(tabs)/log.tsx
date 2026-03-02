@@ -27,8 +27,6 @@ export default function LogScreen() {
 
     return (
         <ScrollView contentContainerStyle={[styles.container, { padding: 16, gap: 12 }]}>
-            <Text style={[styles.text, { fontSize: 22, fontWeight: "700" }]}>Today's Log</Text>
-
             <View style={{ padding: 12, borderWidth: 1, borderRadius: 12, gap: 4 }}>
                 <Text style={[styles.text, { fontWeight: "600" }]}>Daily Totals</Text>
                 <Text style={styles.text}>Calories: {totals.calories.toFixed(0)} kcal</Text>
@@ -40,8 +38,8 @@ export default function LogScreen() {
             {logs.length === 0 ? (
                 <Text style={[styles.text, { opacity: 0.6 }]}>No entries yet.</Text>
             ) : (
-                logs.map(log => {
-                    const recipe = recipes.find(r => r.id === log.recipe_id);
+                logs.map((log) => {
+                    const recipe = recipes.find((r) => r.id === log.recipe_id);
                     return (
                         <View key={log.id} style={{ padding: 12, borderWidth: 1, borderRadius: 12, gap: 4 }}>
                             <Text style={[styles.text, { fontWeight: "600" }]}>{recipe?.name ?? "Unknown recipe"}</Text>
