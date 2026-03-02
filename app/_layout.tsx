@@ -9,6 +9,7 @@ export default function RootLayout() {
             <Stack.Screen name="recipes/new" options={{
                 headerShown: true,
                 title: "New Recipe",
+                headerBackTitle: "Recipes",
                 headerStyle: { backgroundColor: colors.background },
                 headerTintColor: colors.text,
                 contentStyle: { backgroundColor: colors.background },
@@ -16,6 +17,7 @@ export default function RootLayout() {
             <Stack.Screen name="recipes/[id]" options={{
                 headerShown: true,
                 title: "Recipe Details",
+                headerBackTitle: "Recipes",
                 headerStyle: { backgroundColor: colors.background },
                 headerTintColor: colors.text,
                 contentStyle: { backgroundColor: colors.background },
