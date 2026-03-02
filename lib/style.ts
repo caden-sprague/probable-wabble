@@ -1,18 +1,19 @@
 import { StyleSheet } from 'react-native';
+import { colors } from './theme';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#25292e',
+    backgroundColor: colors.background,
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    color: '#fff',
+    color: colors.text,
   },
   button: {
     fontSize: 20,
     textDecorationLine: 'underline',
-    color: '#fff',
+    color: colors.text,
   },
 });
