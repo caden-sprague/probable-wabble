@@ -16,6 +16,11 @@ export async function initDb() {
     // Create tables and indexes
     await db.execAsync(CREATE_TABLES_SQL);
 
+    // Remove any food_log rows whose recipe no longer exists
+    await db.runAsync(
+        `DELETE FROM food_log WHERE recipe_id NOT IN (SELECT id FROM recipes);`
+    );
+
     // Save schema version (helps with future migrations)
     await db.runAsync(
         `INSERT INTO meta (key, value) VALUES ('schema_version', ?)
@@ -68,6 +73,12 @@ export async function createRecipe(input: RecipeInput) {
 
     // lastInsertRowId is returned by expo-sqlite for inserts
     return Number((result as any).lastInsertRowId ?? 0);
+}
+
+export async function deleteRecipe(id: number) {
+    const db = await getDb();
+    await db.runAsync(`DELETE FROM food_log WHERE recipe_id = ?;`, [id]);
+    await db.runAsync(`DELETE FROM recipes WHERE id = ?;`, [id]);
 }
 
 // ----- Food log types -----

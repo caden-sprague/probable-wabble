@@ -4,7 +4,7 @@
 // later can log food and load today’s logs
 
 import { create } from "zustand";
-import { initDb, listRecipes, createRecipe, addFoodLog, listFoodLog, type RecipeRow, type FoodLogRow, type FoodLogInput } from "./db";
+import { initDb, listRecipes, createRecipe, deleteRecipe, addFoodLog, listFoodLog, type RecipeRow, type FoodLogRow, type FoodLogInput } from "./db";
 
 /**
  * This is the "shape" of what the store remembers and what it can do.
@@ -28,6 +28,7 @@ type State = {
     bootstrap: () => Promise<void>;
     refreshRecipes: () => Promise<void>;
     addRecipe: (input: RecipeInput) => Promise<number>;
+    deleteRecipe: (id: number) => Promise<void>;
     refreshLogs: (date: string) => Promise<void>;
     addLog: (input: FoodLogInput) => Promise<void>;
 }
@@ -52,6 +53,12 @@ export const useAppStore = create<State>((set, get) => ({
         const id = await createRecipe(input);
         await get().refreshRecipes();
         return id;
+    },
+
+    deleteRecipe: async (id) => {
+        await deleteRecipe(id);
+        const today = new Date().toISOString().slice(0, 10);
+        await Promise.all([get().refreshRecipes(), get().refreshLogs(today)]);
     },
 
     refreshLogs: async (date) => {

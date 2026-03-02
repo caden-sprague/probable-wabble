@@ -1,11 +1,12 @@
 import { useLocalSearchParams, router } from "expo-router";
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, Alert } from "react-native";
 import { useAppStore } from "@/lib/store";
 import { styles } from "@/lib/style";
 
 export default function RecipeDetailsScreen() {
     const { id } = useLocalSearchParams();
     const recipe = useAppStore(s => s.recipes.find(r => r.id === Number(id)));
+    const deleteRecipe = useAppStore(s => s.deleteRecipe);
 
     if (!recipe) {
         return (
@@ -29,6 +30,19 @@ export default function RecipeDetailsScreen() {
                 style={{ padding: 14, borderWidth: 1, borderRadius: 12, alignSelf: "stretch", marginTop: 8 }}
             >
                 <Text style={[styles.text, { textAlign: "center", fontWeight: "600" }]}>Log Serving</Text>
+            </Pressable>
+
+            <Pressable
+                onPress={() => Alert.alert("Delete Recipe", `Delete "${recipe.name}"? This will also remove all log entries for this recipe.`, [
+                    { text: "Cancel", style: "cancel" },
+                    { text: "Delete", style: "destructive", onPress: async () => {
+                        await deleteRecipe(recipe.id);
+                        router.back();
+                    }},
+                ])}
+                style={{ padding: 14, borderWidth: 1, borderColor: "#c0392b", borderRadius: 12, alignSelf: "stretch" }}
+            >
+                <Text style={[styles.text, { textAlign: "center", fontWeight: "600", color: "#c0392b" }]}>Delete Recipe</Text>
             </Pressable>
         </View>
     );
